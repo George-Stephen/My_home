@@ -1,0 +1,45 @@
+[
+  {
+    "stylers": [
+      {
+        "visibility": "on"
+      },
+      {
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "featureType": "poi.attraction",
+    "stylers": [
+      {
+        "visibility": "on"
+      },
+      {
+        "weight": 4
+      }
+    ]
+  },
+  {
+    "featureType": "poi.medical",
+    "stylers": [
+      {
+        "visibility": "on"
+      },
+      {
+        "weight": 4
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "stylers": [
+      {
+        "visibility": "on"
+      },
+      {
+        "weight": 4
+      }
+    ]
+  }
+]
