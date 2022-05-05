@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:my_home/screens/main/home.dart';
 import 'package:my_home/widgets/apartment_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ApartmentScreen extends StatefulWidget{
   late final Apartment apartment;
@@ -36,7 +37,7 @@ class _apartmentState extends State<ApartmentScreen>{
                           Navigator.pop(context);
                         },
                         child: SizedBox(
-                          height: 360,
+                          height: 390,
                           width: double.infinity,
                           child: Card(
                             semanticContainer: false,
@@ -48,7 +49,7 @@ class _apartmentState extends State<ApartmentScreen>{
                               decoration: BoxDecoration(
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
-                                      image: NetworkImage(widget.apartment.imageUrl)
+                                      image: NetworkImage('https://res.cloudinary.com/dwds7n3rv/'+widget.apartment.imageUrl)
                                   )
                               ),
                               child: Container(
@@ -213,7 +214,7 @@ class _apartmentState extends State<ApartmentScreen>{
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: NetworkImage(widget.apartment.bed_imageUrl)
+                                        image: NetworkImage('https://res.cloudinary.com/dwds7n3rv/'+widget.apartment.bed_imageUrl)
                                     )
                                 ),
                                 child: Container(
@@ -255,7 +256,7 @@ class _apartmentState extends State<ApartmentScreen>{
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: NetworkImage(widget.apartment.bath_imageUrl)
+                                        image: NetworkImage('https://res.cloudinary.com/dwds7n3rv/'+ widget.apartment.bath_imageUrl)
                                     )
                                 ),
                                 child: Container(
@@ -304,7 +305,7 @@ class _apartmentState extends State<ApartmentScreen>{
                             heightFactor: 0.3,
                             widthFactor: 2.5,
                             child: GoogleMap(
-                              initialCameraPosition: CameraPosition(target: LatLng(widget.apartment.lat, widget.apartment.long),zoom: 15,bearing: 15.0, // 1
+                              initialCameraPosition: CameraPosition(target: LatLng(double.parse(widget.apartment.lat),double.parse(widget.apartment.long)),zoom: 15,bearing: 15.0, // 1
                                 tilt: 74.0, // 2
                               ),
                               myLocationEnabled: true,
@@ -318,7 +319,7 @@ class _apartmentState extends State<ApartmentScreen>{
                                     .loadString('assets/map_style.json');
                                 _controller.setMapStyle(value);
                               },
-                              markers: _createMarker(LatLng(widget.apartment.lat, widget.apartment.long))
+                              markers: _createMarker(LatLng(double.parse(widget.apartment.lat),double.parse(widget.apartment.long)))
                             ),
                           ),
                         ),
@@ -365,7 +366,7 @@ class _apartmentState extends State<ApartmentScreen>{
                                   width: 250,
                                   height: 40,
                                   child: TextButton(
-                                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage())),
+                                    onPressed: () => launch("tel: " + widget.apartment.phone_number),
                                     child: Text("Inquire now".toUpperCase(),
                                       style: TextStyle(
                                           fontSize: 14

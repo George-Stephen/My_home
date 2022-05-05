@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:my_home/screens/main/bottom_bar.dart';
 import 'package:my_home/widgets/ProfilePage.dart';
+import 'package:my_home/widgets/SearchCarousel.dart';
 import 'package:my_home/widgets/apartmentCarousel.dart';
 import 'package:my_home/widgets/favoriteCarousel.dart';
 
@@ -11,7 +12,7 @@ class HomePage extends StatefulWidget{
   _homeState createState() => _homeState();
 }
 
-enum BottomIcons { Home, Favourite, Profile }
+enum BottomIcons { Home,Search ,Favourites, Profile }
 
 class _homeState extends State<HomePage> {
   BottomIcons bottomIcons = BottomIcons.Home;
@@ -26,7 +27,12 @@ class _homeState extends State<HomePage> {
             child: ApartmentCarousel()
           )
               : Container(),
-          bottomIcons == BottomIcons.Favourite
+          bottomIcons == BottomIcons.Search
+              ? Center(
+              child: SearchCarousel()
+          )
+              : Container(),
+          bottomIcons == BottomIcons.Favourites
               ? Center(
             child: FavoriteCarousel()
           )
@@ -56,11 +62,21 @@ class _homeState extends State<HomePage> {
                   BottomBar(
                       onPressed: () {
                         setState(() {
-                          bottomIcons = BottomIcons.Favourite;
+                          bottomIcons = BottomIcons.Search;
                         });
                       },
                       bottomIcons:
-                      bottomIcons == BottomIcons.Favourite ? true : false,
+                      bottomIcons == BottomIcons.Search ? true : false,
+                      icons: EvaIcons.searchOutline,
+                      text: "Search"),
+                  BottomBar(
+                      onPressed: () {
+                        setState(() {
+                          bottomIcons = BottomIcons.Favourites;
+                        });
+                      },
+                      bottomIcons:
+                      bottomIcons == BottomIcons.Favourites ? true : false,
                       icons: EvaIcons.starOutline,
                       text: "Favorites"),
                   BottomBar(

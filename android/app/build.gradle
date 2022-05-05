@@ -50,6 +50,10 @@ android {
     }
 }
 
+android {
+    compileSdkVersion 31
+}
+
 flutter {
     source '../..'
 }

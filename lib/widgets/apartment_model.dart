@@ -1,3 +1,33 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+
+
+
+
+Future<List<Apartment>> get_apartments(http.Client client) async {
+  http.Response response = await client.get(Uri.parse('https://apartment254.herokuapp.com/api/apartments/'));
+  final responseJson = json.decode(response.body).cast<Map<String,dynamic>>();
+  print(responseJson);
+  List<Apartment> apartments = List<Apartment>.from(responseJson.map<Apartment>((json) => Apartment.fromJson(json)));
+  for (var e in apartments) {
+    print(e.title);
+  }
+  return apartments ;
+}
+
+Future<List<Apartment>> get_search(http.Client client,String location) async {
+  http.Response response = await client.get(Uri.parse('https://apartment254.herokuapp.com/api/apartments/?location=' + location));
+  final responseJson = json.decode(response.body).cast<Map<String,dynamic>>();
+  print(responseJson);
+  List<Apartment> apartments = List<Apartment>.from(responseJson.map<Apartment>((json) => Apartment.fromJson(json)));
+  for (var e in apartments) {
+    print(e.title);
+  }
+  return apartments ;
+}
 
 class Apartment{
   String imageUrl;
@@ -8,8 +38,9 @@ class Apartment{
   int bathrooms;
   String bed_imageUrl;
   String bath_imageUrl;
-  double lat;
-  double long;
+  String lat;
+  String long;
+  String phone_number;
   int price;
 
   Apartment({
@@ -23,44 +54,26 @@ class Apartment{
     required this.bath_imageUrl,
     required this.lat,
     required this.long,
-    required this.price
+    required this.phone_number,
+    required this.price,
   });
+
+  factory Apartment.fromJson(Map<String,dynamic>json){
+    return new Apartment(
+        imageUrl: json['main_image'] as String,
+        title: json['title'] as String,
+        location: json['location'] as String,
+        description: json['description'] as String,
+        bedrooms: json['bedrooms'] as int,
+        bathrooms: json['bathrooms'] as int,
+        bed_imageUrl: json['bed_image'] as String,
+        bath_imageUrl: json['bath_image'] as String,
+        lat: json['lat'] as String,
+        long: json['long'] as String,
+        phone_number: json['phone_number'] as String,
+        price: json['price'] as int,
+    );
+  }
+
+
 }
-List<Apartment> apartments = [
-   Apartment(
-       imageUrl: "https://i.pinimg.com/originals/58/10/58/5810584e4ed79cd8bb0707e78cf4c136.jpg",
-       title: 'Black Modern Abbells House',
-       location: 'Mountain Street,California',
-       description: "Perfect getaway for all wine lovers and hikers in this serene spanish environment ranch style casita with mountain views!",
-       bedrooms: 4,
-       bathrooms: 2,
-       bath_imageUrl: "https://cdn.decoist.com/wp-content/uploads/2021/06/Modular-black-house-with-balcony-49706.jpg",
-       bed_imageUrl: "https://cdn.decoist.com/wp-content/uploads/2021/06/Modular-black-house-with-balcony-49706.jpg",
-       lat: 38.296452,
-       long: -76.508827,
-       price: 920),
-  Apartment(
-      imageUrl: "https://cdn.decoist.com/wp-content/uploads/2021/06/Modular-black-house-with-balcony-49706.jpg",
-      title: 'Black Abbells House',
-      location: 'Mountain Street,LA',
-      description: "Perfect getaway for all wine lovers and hikers in this serene spanish environment ranch style casita with mountain views!",
-      bedrooms: 4,
-      bathrooms: 2,
-      bath_imageUrl: "https://cdn.decoist.com/wp-content/uploads/2021/06/Modular-black-house-with-balcony-49706.jpg",
-      bed_imageUrl: "https://cdn.decoist.com/wp-content/uploads/2021/06/Modular-black-house-with-balcony-49706.jpg",
-      lat: 38.296452,
-      long: -76.508827,
-      price: 1000),
-  Apartment(
-      imageUrl: "https://cdn.decoist.com/wp-content/uploads/2021/06/Black-house-in-the-woods-with-car-and-pool-72730.jpg",
-      title: 'Black Modern House',
-      location: 'Mountain Street,Texas',
-      description: "Perfect getaway for all wine lovers and hikers in this serene  spanish environment ranch style casita with mountain views!",
-      bedrooms: 4,
-      bathrooms: 2,
-      bath_imageUrl: "https://cdn.decoist.com/wp-content/uploads/2021/06/Modular-black-house-with-balcony-49706.jpg",
-      bed_imageUrl: "https://cdn.decoist.com/wp-content/uploads/2021/06/Modular-black-house-with-balcony-49706.jpg",
-      lat: 38.296452,
-      long: -76.508827,
-      price: 1500),
-];

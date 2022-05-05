@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'LeonSans',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Splashscreen(),
+      home: HomePage(),
     );
   }
 }

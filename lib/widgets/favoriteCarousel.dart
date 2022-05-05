@@ -42,69 +42,69 @@ class _favoriteState extends State<FavoriteCarousel>{
           Center(
             child: SizedBox(
               height: 430.0,
-              child:  PageView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: apartments.length,
-                controller: PageController(viewportFraction: 1.0),
-                itemBuilder: (BuildContext context,int index){
-                  Apartment apartment = apartments[index];
-                  return GestureDetector(
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(
-                          builder: (_) => ApartmentScreen(
-                              apartment: apartment
-                          ),
-                        )
-                    ),
-                    child: Card(
-                      semanticContainer: false,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                      margin: EdgeInsets.all(10.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(apartment.imageUrl)
-                            )
-                        ),
-                        child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.transparent.withOpacity(0.5),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(25.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    apartment.title,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17.0,
-                                    ),
-                                  ),
-                                  Text(
-                                    apartment.location,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 12.0
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+              // child:  PageView.builder(
+              //   scrollDirection: Axis.horizontal,
+              //   itemCount: apartments.length,
+              //   controller: PageController(viewportFraction: 1.0),
+              //   itemBuilder: (BuildContext context,int index){
+              //     Apartment apartment = apartments[index];
+              //     return GestureDetector(
+              //       onTap: () => Navigator.push(context,
+              //           MaterialPageRoute(
+              //             builder: (_) => ApartmentScreen(
+              //                 apartment: apartment
+              //             ),
+              //           )
+              //       ),
+              //       child: Card(
+              //         semanticContainer: false,
+              //         clipBehavior: Clip.antiAliasWithSaveLayer,
+              //         elevation: 5,
+              //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              //         margin: EdgeInsets.all(10.0),
+              //         child: Container(
+              //           decoration: BoxDecoration(
+              //               image: DecorationImage(
+              //                   fit: BoxFit.cover,
+              //                   image: NetworkImage(apartment.imageUrl)
+              //               )
+              //           ),
+              //           child: Container(
+              //               decoration: BoxDecoration(
+              //                 color: Colors.transparent.withOpacity(0.5),
+              //               ),
+              //               child: Padding(
+              //                 padding: const EdgeInsets.all(25.0),
+              //                 child: Column(
+              //                   crossAxisAlignment: CrossAxisAlignment.start,
+              //                   mainAxisAlignment: MainAxisAlignment.end,
+              //                   children: [
+              //                     Text(
+              //                       apartment.title,
+              //                       textAlign: TextAlign.justify,
+              //                       style: TextStyle(
+              //                         color: Colors.white,
+              //                         fontWeight: FontWeight.bold,
+              //                         fontSize: 17.0,
+              //                       ),
+              //                     ),
+              //                     Text(
+              //                       apartment.location,
+              //                       style: TextStyle(
+              //                           color: Colors.white,
+              //                           fontWeight: FontWeight.normal,
+              //                           fontSize: 12.0
+              //                       ),
+              //                     )
+              //                   ],
+              //                 ),
+              //               )
+              //           ),
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ),
             ),
           )
         ],
