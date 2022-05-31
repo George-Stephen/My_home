@@ -22,28 +22,32 @@ class _apartmentState extends State<ApartmentCarousel>{
         SizedBox(
           height: 30,
         ),
-        TextField(
-          cursorColor: Colors.grey,
-          decoration: InputDecoration(
-            fillColor: Colors.transparent.withOpacity(0.2),
-            filled: true,
-            hintText: "Search",
-            hintStyle: TextStyle(
-                color: Colors.white.withOpacity(0.8),
-                fontSize: 18
+        Container(
+          width: double.infinity,
+          margin: EdgeInsets.all(10.0),
+          child: TextField(
+            cursorColor: Colors.grey,
+            decoration: InputDecoration(
+              fillColor: Colors.transparent.withOpacity(0.2),
+              filled: true,
+              hintText: "Search",
+              hintStyle: TextStyle(
+                  color: Colors.white.withOpacity(0.8),
+                  fontSize: 18
+              ),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25),
+                  borderSide: const BorderSide(color: Colors.white, width: 2.0)
+              ),
+              prefixIcon: Container(
+                padding: EdgeInsets.all(15),
+                child: Icon(Icons.search_sharp,color: Colors.white),
+                width: 18,
+              ),
             ),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25),
-                borderSide: const BorderSide(color: Colors.white, width: 2.0)
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.8),
             ),
-            prefixIcon: Container(
-              padding: EdgeInsets.all(15),
-              child: Icon(Icons.search_sharp,color: Colors.white),
-              width: 18,
-            ),
-          ),
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.8),
           ),
         ),
         SizedBox(
