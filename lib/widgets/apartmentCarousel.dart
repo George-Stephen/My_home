@@ -64,11 +64,12 @@ class _apartmentState extends State<ApartmentCarousel>{
       List<Apartment> apartments = snapshot.data!;
       return  Container(
       width: double.infinity,
+      margin: EdgeInsets.all(10.0),
       child: Column(
       children: [
         Center(
           child: SizedBox(
-          height: 430.0,
+          height: 600.0,
           child:  PageView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: apartments.length,
@@ -111,7 +112,7 @@ class _apartmentState extends State<ApartmentCarousel>{
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
           height: 100,
-          width: 300,
+          width: double.infinity,
           child: Container(
           decoration: BoxDecoration(
             color: Colors.grey.withOpacity(0.5),
