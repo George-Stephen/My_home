@@ -51,7 +51,7 @@ class _apartmentState extends State<ApartmentCarousel>{
           ),
         ),
         SizedBox(
-          height: 50.0,
+          height: 30.0,
         ),
       new FutureBuilder<List<Apartment>>(
       future: get_apartments(http.Client()),
@@ -69,7 +69,7 @@ class _apartmentState extends State<ApartmentCarousel>{
       children: [
         Center(
           child: SizedBox(
-          height: 600.0,
+          height: 550.0,
           child:  PageView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: apartments.length,
