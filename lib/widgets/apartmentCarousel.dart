@@ -50,124 +50,127 @@ class _apartmentState extends State<ApartmentCarousel>{
             ),
           ),
         ),
-        SizedBox(
-          height: 30.0,
-        ),
-      new FutureBuilder<List<Apartment>>(
-      future: get_apartments(http.Client()),
-      builder: (context,snapshot){
-      if(snapshot.hasError){
-      return  Center(
-      child: Text("We are currently facing technical issues,try again after a few minutes"),
-      );
-      } else if(snapshot.hasData){
-      List<Apartment> apartments = snapshot.data!;
-      return  Container(
-      width: double.infinity,
-      margin: EdgeInsets.all(10.0),
-      child: Column(
-      children: [
-        Center(
-          child: SizedBox(
-          height: 550.0,
-          child:  PageView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: apartments.length,
-          controller: PageController(viewportFraction: 1.0),
-          itemBuilder: (BuildContext context,int index){
-          Apartment apartment = apartments[index];
-          return GestureDetector(
-          onDoubleTap: () =>
-          Scaffold.of(context).showSnackBar(
-          SnackBar(
-          duration : Duration(seconds: 1),
-          content: Text("Apartment is added to your favorites successfully")
+          SizedBox(
+            height: 30.0,
           ),
-          ),
-          onTap: () => Navigator.push(context,
-          MaterialPageRoute(
-          builder: (_) => ApartmentScreen(
-          apartment: apartment
-          ),
-          )
-          ),
-          child: Card(
-          semanticContainer: false,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          elevation: 3,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          margin: EdgeInsets.all(2.0),
-          child: Stack(
-          children: <Widget>[
-          Container(
-          alignment: Alignment.center,
-          child: Image.network('https://res.cloudinary.com/dwds7n3rv/'+ apartment.imageUrl,
-          width: double.infinity,
-          height: double.infinity,
-          fit: BoxFit.cover,),
-          ),
-          Container(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-          height: 100,
-          width: double.infinity,
-          child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(15),
-            ),
-            child:Padding(
-            padding: const EdgeInsets.all(8.0),
-            child:Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-            apartment.title,
-            textAlign: TextAlign.justify,
-              style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              height: 1.0,
-              fontSize: 20.0,
-            ),
-          ),
-              Text(
-                apartment.location,
-                style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.normal,
-                fontSize: 12.0
-              ),
-            )
-            ],
-          )
-          ),
-          ),
-          ),
-          )
-          ),
-          ],
-          ),
-          ),
+          new FutureBuilder<List<Apartment>>(
+          future: get_apartments(http.Client()),
+          builder: (context,snapshot){
+          if(snapshot.hasError){
+          return  Center(
+          child: Text("We are currently facing technical issues,try again after a few minutes"),
           );
-          },
+          } else if(snapshot.hasData){
+          List<Apartment> apartments = snapshot.data!;
+          return  Container(
+          width: double.infinity,
+          margin: EdgeInsets.all(10.0),
+          child: Column(
+          children: [
+            Center(
+              child: SizedBox(
+              height: 500.0,
+              child:  PageView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: apartments.length,
+              controller: PageController(viewportFraction: 1.0),
+              itemBuilder: (BuildContext context,int index){
+              Apartment apartment = apartments[index];
+              return GestureDetector(
+              onDoubleTap: () =>
+              Scaffold.of(context).showSnackBar(
+              SnackBar(
+              duration : Duration(seconds: 1),
+              content: Text("Apartment is added to your favorites successfully")
+              ),
+              ),
+              onTap: () => Navigator.push(context,
+              MaterialPageRoute(
+              builder: (_) => ApartmentScreen(
+              apartment: apartment
+              ),
+              )
+              ),
+              child: Card(
+              semanticContainer: false,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 3,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+              margin: EdgeInsets.all(2.0),
+              child: Stack(
+              children: <Widget>[
+              Container(
+              alignment: Alignment.center,
+              child: Image.network('https://res.cloudinary.com/dwds7n3rv/'+ apartment.imageUrl,
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.cover,),
+              ),
+              Container(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+              height: 100,
+              width: double.infinity,
+              child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(15),
+                ),
+                child:Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                apartment.title,
+                textAlign: TextAlign.justify,
+                  style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  height: 1.0,
+                  fontSize: 20.0,
+                ),
+              ),
+                  Text(
+                    apartment.location,
+                    style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 12.0
+                  ),
+                )
+                ],
+              )
+              ),
+              ),
+              ),
+              )
+              ),
+              ],
+              ),
+              ),
+              );
+              },
+              ),
+              ),
+          )
+            ],
           ),
+        );
+        }
+        else {
+        return const Center(
+        child: CircularProgressIndicator(),
+        );
+        }
+        }
+        ),
+          SizedBox(
+            height: 30.0,
           ),
-      )
-        ],
-      ),
-    );
-    }
-    else {
-    return const Center(
-    child: CircularProgressIndicator(),
-    );
-    }
-    }
-    ),
       ],
     );
   }
