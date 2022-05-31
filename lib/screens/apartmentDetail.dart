@@ -19,6 +19,7 @@ class ApartmentScreen extends StatefulWidget{
 
 class _apartmentState extends State<ApartmentScreen>{
   late GoogleMapController _controller;
+  bool isReadmore = false;
 
   @override
   Widget build(BuildContext context) {
@@ -101,13 +102,14 @@ class _apartmentState extends State<ApartmentScreen>{
                       SizedBox(
                         height: 20,
                       ),
-                      Text(widget.apartment.description,
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 14.0,
-                            color: Colors.white
-                        ),
+                      new GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            // toggle the bool variable true or false
+                            isReadmore = !isReadmore;
+                          });
+                        },
+                        child : buildText(widget.apartment.description),
                       ),
                       SizedBox(
                         height: 20,
@@ -396,6 +398,29 @@ class _apartmentState extends State<ApartmentScreen>{
       ),
     );
   }
+
+  Widget buildText(String text){
+
+    // if read more is false then show only 4 lines from text
+    // else show full text
+
+    final lines = isReadmore ? null : 4;
+    return Text(
+      text,
+      textAlign: TextAlign.start,
+      style: TextStyle(
+          fontWeight: FontWeight.normal,
+          fontSize: 14.0,
+          color: Colors.white
+      ),
+      maxLines: lines,
+
+      // overflow properties is used to show 3 dot in text widget
+      // so that user can understand there are few more line to read.
+
+      overflow: isReadmore ? TextOverflow.visible: TextOverflow.ellipsis,
+    );
+  }
 }
 Set<Marker> _createMarker(LatLng latLng) {
   return {
@@ -404,3 +429,4 @@ Set<Marker> _createMarker(LatLng latLng) {
         position: latLng),
   };
 }
+

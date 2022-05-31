@@ -45,7 +45,7 @@ class _homeState extends State<HomePage> {
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
-              padding: EdgeInsets.only(left: 20, right: 20, bottom: 20,top: 20),
+              padding: EdgeInsets.only(left: 20, right: 20, bottom: 15,top: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -57,18 +57,8 @@ class _homeState extends State<HomePage> {
                       },
                       bottomIcons:
                       bottomIcons == BottomIcons.Home ? true : false,
-                      icons: EvaIcons.homeOutline,
+                      icons: Icons.home_sharp,
                       text: "Home"),
-                  BottomBar(
-                      onPressed: () {
-                        setState(() {
-                          bottomIcons = BottomIcons.Search;
-                        });
-                      },
-                      bottomIcons:
-                      bottomIcons == BottomIcons.Search ? true : false,
-                      icons: EvaIcons.searchOutline,
-                      text: "Search"),
                   BottomBar(
                       onPressed: () {
                         setState(() {
@@ -77,7 +67,7 @@ class _homeState extends State<HomePage> {
                       },
                       bottomIcons:
                       bottomIcons == BottomIcons.Favourites ? true : false,
-                      icons: EvaIcons.starOutline,
+                      icons: Icons.thumb_up,
                       text: "Favorites"),
                   BottomBar(
                       onPressed: () {
@@ -87,7 +77,7 @@ class _homeState extends State<HomePage> {
                       },
                       bottomIcons:
                       bottomIcons == BottomIcons.Profile ? true : false,
-                      icons: EvaIcons.personOutline,
+                      icons: Icons.account_circle,
                       text: "Profile"),
                 ],
               ),

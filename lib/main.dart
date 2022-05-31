@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'My home',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xff1F1F2C),
+        scaffoldBackgroundColor: const Color(0xff333846),
         fontFamily: 'LeonSans',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

@@ -24,11 +24,10 @@ class _BottomBarState extends State<BottomBar> {
         child: widget.bottomIcons == true
             ? Container(
           decoration: BoxDecoration(
-            color: Colors.white12.withOpacity(0.6),
-            borderRadius: BorderRadius.circular(30),
+            color: Colors.transparent.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(15),
           ),
-          padding:
-          EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+          padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
           child: Row(
             children: <Widget>[
               Icon(
@@ -48,6 +47,6 @@ class _BottomBarState extends State<BottomBar> {
             ],
           ),
         )
-            : Icon(widget.icons));
+            : Icon(widget.icons,color: Colors.white));
   }
 }
