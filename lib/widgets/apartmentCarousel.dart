@@ -69,7 +69,7 @@ class _apartmentState extends State<ApartmentCarousel>{
           children: [
             Center(
               child: SizedBox(
-              height: 500.0,
+              height: 550.0,
               child:  PageView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: apartments.length,
@@ -168,9 +168,7 @@ class _apartmentState extends State<ApartmentCarousel>{
         }
         }
         ),
-          SizedBox(
-            height: 30.0,
-          ),
+
       ],
     );
   }
