@@ -68,7 +68,7 @@ class _searchState extends State<SearchCarousel> {
                                     Apartment apartment = apartments[index];
                                     return GestureDetector(
                                       onDoubleTap: () =>
-                                          Scaffold.of(context).showSnackBar(
+                                          ScaffoldMessenger.of(context).showSnackBar(
                                             SnackBar(
                                                 duration : Duration(seconds: 1),
                                                 content: Text("Apartment is added to your favorites successfully")
